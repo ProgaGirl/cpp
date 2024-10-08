@@ -16,5 +16,5 @@
 [Программа курса C++](course-program.md) — Основное содержание курса.
 
 ## Тут мы решаем задачи
-[Перейти в контсет](https://contest.cs.msu.ru/cgi-bin/new-client?contest_id=540) — Практические задачи на С++.
+[Перейти в контест](https://contest.cs.msu.ru/cgi-bin/new-client?contest_id=540) — Практические задачи на С++.
 
