@@ -161,9 +161,14 @@ class Snake {
                 }
 
                 bool isCrashTails(Snake& other_snake) {
-                        for (size_t s = 1; s < tail_size; s++) {
-                                if (other_snake.head.x == tail[s].x && other_snake.head.y == tail[s].y) {
-                                        return true;
+                        for (size_t s1 = 1; s1 < tail_size; s1++) {
+                                for (size_t s2 = 1; s2 < other_snake.tail_size; s2++) {
+                                        if (!(tail[s1].x == 0 && tail[s1].y == 0) ||
+                                            !(other_snake.tail[s2].x == 0 && other_snake.tail[s2].y == 0)) {
+                                            if (other_snake.tail[s2].x == tail[s1].x && other_snake.tail[s2].y == tail[s1].y) {
+                                                    return true;
+                                            }
+                                        }
                                 }
                         }
                         return false;
@@ -245,7 +250,7 @@ class Foods {
                 }
 
                 void repairSeed(Snake& snake, Snake& other_snake) {
-                        for (size_t s = 0; s < snake.tail_size; s++) {
+                        for (size_t s = 1; s < snake.tail_size; s++) {
                                 for (auto& f : food) {
                                         if (f.x == snake.tail[s].x && f.y == snake.tail[s].y && f.enable) {
                                                 putFoodSeed(f);
@@ -253,9 +258,9 @@ class Foods {
                                 }
                         }
 
-                        for (size_t s = 0; s < other_snake.tail_size; s++) {
+                        for (size_t s = 1; s < other_snake.tail_size; s++) {
                                 for (auto& f : food) {
-                                        if (f.x == snake.tail[s].x && f.y == snake.tail[s].y && f.enable) {
+                                        if (f.x == other_snake.tail[s].x && f.y == other_snake.tail[s].y && f.enable) {
                                                 putFoodSeed(f);
                                         }
                                 }
@@ -334,7 +339,7 @@ class Bariers {
                 }
 
                 void repairBarier(Snake& snake, Snake& other_snake, Foods& fd) {
-                        for (size_t s = 0; s < snake.tail_size; s++) {
+                        for (size_t s = 1; s < snake.tail_size; s++) {
                                 for (auto& b : barier) {
                                         if (b.x == snake.tail[s].x && b.y == snake.tail[s].y && b.enable) {
                                                 putBarierSeed(b);
@@ -342,9 +347,9 @@ class Bariers {
                                 }
                         }
 
-                        for (size_t s = 0; s < other_snake.tail_size; s++) {
+                        for (size_t s = 1; s < other_snake.tail_size; s++) {
                                 for (auto& b : barier) {
-                                        if (b.x == snake.tail[s].x && b.y == snake.tail[s].y && b.enable) {
+                                        if (b.x == other_snake.tail[s].x && b.y == other_snake.tail[s].y && b.enable) {
                                                 putBarierSeed(b);
                                         }
                                 }
@@ -416,14 +421,14 @@ class Bonuses {
                 }
 
                 void repairBonus(Snake& snake, Snake& other_snake, Foods& fd, Bariers& br) {
-                        for (size_t s = 0; s < snake.tail_size; s++) {
+                        for (size_t s = 1; s < snake.tail_size; s++) {
                                 if (bonus.x == snake.tail[s].x && bonus.y == snake.tail[s].y && bonus.enable) {
                                         putBonus();
                                 }
                         }
 
-                        for (size_t s = 0; s < other_snake.tail_size; s++) {
-                                if (bonus.x == snake.tail[s].x && bonus.y == snake.tail[s].y && bonus.enable) {
+                        for (size_t s = 1; s < other_snake.tail_size; s++) {
+                                if (bonus.x == other_snake.tail[s].x && bonus.y == other_snake.tail[s].y && bonus.enable) {
                                         putBonus();
                                 }
                         }
